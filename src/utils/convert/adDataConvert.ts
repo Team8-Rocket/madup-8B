@@ -1,4 +1,4 @@
-import { IAdData, IConvertedAdData } from 'types/ads.d'
+import { IAdData } from 'types/ads.d'
 import dayjs from 'dayjs'
 
 const convertTitle = (adType: string) => {

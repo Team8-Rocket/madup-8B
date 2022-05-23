@@ -4,7 +4,6 @@ import { ArrowDown } from 'assets'
 import Card from './Card'
 import { adDataConvert } from 'utils/convert/adDataConvert'
 import datas from 'assets/json/wanted_FE_ad-list-data-set.json'
-import { IAdData } from 'types/ads'
 
 const DROPDOWN_ITEM = ['전체 광고', '진행중', '중단됨']
 const DATA = adDataConvert(datas.ads)
@@ -36,10 +35,10 @@ const AdManagement = () => {
       document.removeEventListener('mousedown', clickDropdownOutside as EventListener)
     }
   }, [])
+
   return (
     <div className={styles.content}>
       <h1 className={styles.title}>광고관리</h1>
-
       <div className={styles.cardContainer}>
         <div className={styles.cardMenu}>
           <div ref={dropdownRef}>
@@ -61,20 +60,15 @@ const AdManagement = () => {
               </ul>
             )}
           </div>
-
           <button type='button' className={styles.addAdButton}>
             광고 만들기
           </button>
         </div>
         <div className={styles.gridContainer}>
-          {DATA.map((data) => {
-            return <Card key={data.id} {...data} />
-          })}
-          {/* <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card /> */}
+          {DATA.reduce((acc: JSX.Element[], data) => {
+            if (selectedWord === '전체 광고' || selectedWord === data.status) acc.push(<Card key={data.id} {...data} />)
+            return acc
+          }, [])}
         </div>
       </div>
     </div>
