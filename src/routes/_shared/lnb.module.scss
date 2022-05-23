@@ -1,0 +1,175 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  position: absolute;
+  width: 320px;
+  height: 100vh;
+  padding: 24px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 4%);
+
+  .logo {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+  }
+
+  hr {
+    position: absolute;
+    top: 150px;
+    width: 240px;
+    border: 0.5px solid colors.$GREY50;
+  }
+
+  .serviceContainer {
+    position: absolute;
+    top: 190px;
+
+    p {
+      padding: 0 24px;
+      font-size: 12px;
+      color: colors.$SUBCOLOR;
+    }
+
+    .dropdown {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 240px;
+      height: 60px;
+      padding: 0 12px;
+      margin-top: 16px;
+      margin-left: 12px;
+      font-size: 16px;
+      font-weight: 700 !important;
+      border: 1px solid colors.$GREY100;
+      border-radius: 10px;
+    }
+  }
+
+  .dropdownMenu {
+    position: fixed;
+    left: 35px;
+    z-index: 1;
+    max-width: 240px;
+    margin-top: 3px;
+    background-color: white;
+    // border: 1px solid colors.$GREY100;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
+
+    .dropdownList {
+      width: 240px;
+      height: 60px;
+      padding: 0 12px;
+      line-height: 60px;
+      border-radius: 10px;
+
+      button {
+        font-weight: 700;
+      }
+    }
+  }
+
+  nav {
+    position: absolute;
+    top: 360px;
+    height: 160px;
+
+    p {
+      padding: 0 32px;
+      font-size: 12px;
+      color: colors.$SUBCOLOR;
+    }
+
+    ul {
+      padding: 0 12px;
+      margin: 20px 0;
+
+      li {
+        width: 240px;
+        height: 60px;
+        line-height: 60px;
+
+        .active {
+          color: colors.$LINK_ACTIVE !important;
+          background: colors.$GREY50;
+          border-radius: 12px;
+
+          svg {
+            fill: #586cf5;
+          }
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          padding: 0 16px;
+        }
+
+        a:link,
+        a:visited,
+        a:hover {
+          color: colors.$MAINCOLOR;
+        }
+
+        svg {
+          margin-right: 12px;
+        }
+
+        & + li {
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  .tutorial {
+    position: absolute;
+    top: 750px;
+    left: 40px;
+    display: flex;
+    width: 240px;
+    height: 100px;
+    padding: 30px 20px;
+    background: colors.$SECONDARY;
+    border-radius: 10px;
+
+    .tutorialText {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-left: 8px;
+
+      strong {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 500;
+        color: colors.$SUBCOLOR;
+      }
+    }
+  }
+
+  .termsCondition {
+    position: absolute;
+    top: 890px;
+    left: 60px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: colors.$SUBCOLOR;
+
+    div:first-child {
+      margin-bottom: 12px;
+    }
+
+    div:last-child {
+      text-decoration: underline;
+    }
+  }
+}

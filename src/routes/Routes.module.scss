@@ -1,7 +1,11 @@
 @use '/src/styles/constants/colors';
 
 .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+
+  main {
+    margin-left: 320px;
+  }
 }

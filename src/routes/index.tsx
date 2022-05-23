@@ -5,18 +5,20 @@ import Header from './_shared/Header'
 import DashBoard from './DashBoard'
 import AdManagement from './AdManagement'
 
-import styles from './routes.module.scss'
+import styles from './Routes.module.scss'
 
 const App = () => {
   return (
     <div className={styles.app}>
       <LNB />
       <Header />
-      <Routes>
-        <Route path='/' element={<DashBoard />} />
-        <Route path='ad' element={<AdManagement />} />
-        <Route path='*' element={<div>404</div>} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path='/' element={<DashBoard />} />
+          <Route path='ad' element={<AdManagement />} />
+          <Route path='*' element={<div>404</div>} />
+        </Routes>
+      </main>
     </div>
   )
 }
