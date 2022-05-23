@@ -1,0 +1,45 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  width: calc(100vw - 320px);
+  height: 80px;
+  padding-right: 16px;
+  margin-left: 320px;
+  background: colors.$BACKGROUND;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 80px;
+
+    .notify {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: -3px;
+        right: -4px;
+        width: 5px;
+        height: 5px;
+        content: '';
+        background: #ea3a4b;
+        border-radius: 50%;
+      }
+    }
+
+    & > li {
+      margin-right: 32px;
+    }
+
+    li:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile {
+      margin-right: 12px;
+    }
+  }
+}

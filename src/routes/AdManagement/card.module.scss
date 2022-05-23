@@ -1,0 +1,54 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  //   height: 1020px;
+  padding-top: 40px;
+  margin: auto;
+
+  .cardBody {
+    width: 305px;
+    height: 420px;
+    padding: 40px 20px 21px;
+    background: colors.$WHITE;
+    border: 1px solid colors.$GREY100;
+    border-radius: 10px;
+
+    .cardContents {
+      margin-bottom: 20px;
+
+      .cardTitle {
+        font-size: 16px;
+        font-weight: 700;
+        color: colors.$MAINCOLOR;
+      }
+
+      .cardDataSet {
+        margin-top: 40px;
+        border-bottom: 1px solid colors.$GREY50;
+
+        .cardData {
+          display: flex;
+          align-items: center;
+          height: 40px;
+          font-size: 12px;
+          border-top: 1px solid colors.$GREY50;
+
+          dt {
+            flex: 0 0 111px;
+            font-weight: 500;
+            color: colors.$SUBCOLOR;
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    padding: 12px 20px;
+    font-weight: 700;
+    color: colors.$MAINCOLOR;
+    background: colors.$WHITE;
+    border: 1px solid colors.$GREY100;
+    border-radius: 10px;
+  }
+}
