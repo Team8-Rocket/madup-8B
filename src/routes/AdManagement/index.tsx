@@ -2,8 +2,12 @@ import { useState, useEffect, useRef, MouseEvent } from 'react'
 import styles from './adManagement.module.scss'
 import { ArrowDown } from 'assets'
 import Card from './Card'
+import { adDataConvert } from 'utils/convert/adDataConvert'
+import datas from 'assets/json/wanted_FE_ad-list-data-set.json'
+import { IAdData } from 'types/ads'
 
 const DROPDOWN_ITEM = ['전체 광고', '진행중', '중단됨']
+const DATA = adDataConvert(datas.ads)
 
 const AdManagement = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -63,11 +67,14 @@ const AdManagement = () => {
           </button>
         </div>
         <div className={styles.gridContainer}>
+          {DATA.map((data) => {
+            return <Card key={data.id} {...data} />
+          })}
+          {/* <Card />
           <Card />
           <Card />
           <Card />
-          <Card />
-          <Card />
+          <Card /> */}
         </div>
       </div>
     </div>
