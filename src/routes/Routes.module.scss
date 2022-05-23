@@ -4,8 +4,11 @@
   // display: flex;
   // align-items: center;
   // justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
 
   main {
     margin-left: 320px;
+    background-color: colors.$BACKGROUND;
   }
 }

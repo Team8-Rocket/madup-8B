@@ -33,7 +33,7 @@ const LNB = () => {
     return () => {
       document.removeEventListener('mousedown', clickDropdownOutside as EventListener)
     }
-  })
+  }, [])
 
   return (
     <div className={styles.container}>

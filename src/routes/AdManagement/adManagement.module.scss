@@ -1,0 +1,79 @@
+@use '/src/styles/constants/colors';
+
+.content {
+  height: calc(100vh - 80px);
+  padding-top: 25px;
+  margin: 0 41px 0 40px;
+  background: colors.$BACKGROUND;
+  border-top: 1px solid colors.$GREY50;
+
+  .title {
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .cardContainer {
+    padding: 40px;
+    margin-top: 55px;
+    background: colors.$WHITE;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 4%);
+
+    .cardMenu {
+      display: flex;
+      justify-content: space-between;
+
+      .dropdownButton {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 123px;
+        padding: 0 16px;
+        font-size: 14px;
+        line-height: 42px;
+        color: colors.$MAINCOLOR !important;
+        border: 1px solid colors.$GREY100;
+        border-radius: 10px;
+      }
+
+      .dropdownMenu {
+        position: fixed;
+        z-index: 1;
+        max-width: 240px;
+        margin-top: 3px;
+        background-color: colors.$WHITE;
+        border: 1px solid colors.$GREY100;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
+
+        .dropdownList {
+          width: 123px;
+          height: 40px;
+          padding: 0 12px;
+          line-height: 40px;
+          border-radius: 10px;
+        }
+      }
+
+      .addAdButton {
+        width: 108px;
+        height: 40px;
+        // margin: 40px 40px 0 0;
+        color: colors.$WHITE;
+        background: colors.$PRIMARY;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    // height: 840px;
+    margin: 0 auto;
+    // overflow-y: scroll;
+    // row-gap: 32px;
+    // column-gap: 20px;
+  }
+}
