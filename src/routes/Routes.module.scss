@@ -8,6 +8,8 @@
   font-weight: 700;
 
   main {
+    width: calc(100vw - 320px);
+    height: 1756px;
     margin-left: 320px;
     background-color: colors.$BACKGROUND;
   }
