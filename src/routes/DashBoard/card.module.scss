@@ -1,0 +1,39 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 304px;
+  height: 79px;
+  padding: 14px 40px;
+  margin-top: 20px;
+  border: 1px solid #edeff1;
+  border-radius: 10px;
+
+  h3 {
+    font-size: 12px;
+    font-weight: 500;
+    color: colors.$SUBCOLOR;
+  }
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .currentValue {
+    color: colors.$MAINCOLOR;
+  }
+
+  .diffValue {
+    font-size: 12px;
+    font-weight: 500;
+    color: colors.$SUBCOLOR;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+  }
+}

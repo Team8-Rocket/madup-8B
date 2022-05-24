@@ -1,0 +1,26 @@
+@use '/src/styles/constants/colors';
+
+.content {
+  width: 1039px;
+  height: 700px;
+  // height: 100%;
+  padding: 40px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+}
+
+.chartContainer {
+  // width: 1200px;
+  min-width: 1000px;
+  height: 400px;
+}
+
+.selectCategoryContainer {
+  display: flex;
+}
