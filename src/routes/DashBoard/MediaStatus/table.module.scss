@@ -1,0 +1,56 @@
+@use '/src/styles/constants/colors';
+
+.tableContainer {
+  width: 100%;
+  margin-top: 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table {
+  width: 1400px;
+  min-width: 300px;
+  overflow-x: scroll;
+  text-align: left;
+  table-layout: fixed;
+  border-spacing: 0;
+  //   border-collapse: separate;
+
+  .columnGroup {
+    width: 124px;
+    min-width: 124px;
+  }
+
+  .tableHeader {
+    padding: 20px;
+    font-size: 12px;
+    color: colors.$SUBCOLOR;
+
+    th {
+      padding: 10px 0;
+      text-align: right;
+      border-top: 1px solid colors.$GREY50;
+    }
+
+    .short {
+      width: 130px;
+    }
+  }
+
+  .tableBody {
+    tr {
+      border-top: 1px solid colors.$GREY50;
+    }
+  }
+
+  td {
+    height: 40px;
+    padding: 12px 0;
+    color: colors.$MAINCOLOR;
+    text-align: right;
+  }
+
+  .totalValue > * {
+    color: colors.$PRIMARY;
+  }
+}
