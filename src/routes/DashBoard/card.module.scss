@@ -32,8 +32,8 @@
     font-weight: 500;
     color: colors.$SUBCOLOR;
 
-    &:first-child {
-      margin-right: 8px;
+    :first-child {
+      margin-right: 5px;
     }
   }
 }

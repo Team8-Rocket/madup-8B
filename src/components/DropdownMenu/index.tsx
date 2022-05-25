@@ -1,4 +1,9 @@
 import { MouseEvent, useEffect, useRef, useState } from 'react'
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { useAppSelector, useAppDispatch } from 'hooks'
+import { getCategory1, getCategory2, setCategory1, getDateRange } from 'states/ads'
+import dayjs from 'dayjs'
+import cx from 'classnames'
 
 import { ArrowDown } from 'assets'
 import styles from './dropdownMenu.module.scss'
@@ -14,15 +19,24 @@ const MENU_TITLE: MemuTitle = {
   click: '클릭수',
   conv: '전환수',
   convValue: '매출',
+  none: '없음',
+  day: '일간',
+  week: '주간',
 }
 
 interface Props {
   menuList: string[]
   category: string
-  setCategory: (item: string) => void
+  setCategory: ActionCreatorWithPayload<string, string>
 }
 
 const DropdonwnMenu = ({ menuList, category, setCategory }: Props) => {
+  const date = useAppSelector(getDateRange)
+  const [startDate, endDate] = date
+  const isMoreOneWeek = dayjs(endDate).diff(startDate, 'day') >= 7
+
+  const dispatch = useAppDispatch()
+
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -31,7 +45,7 @@ const DropdonwnMenu = ({ menuList, category, setCategory }: Props) => {
   }
 
   const handleClickDropdown = (e: MouseEvent<HTMLButtonElement>) => {
-    setCategory(e.currentTarget.value)
+    dispatch(setCategory(e.currentTarget.value))
     setToggleDropdown(false)
   }
 
@@ -60,7 +74,13 @@ const DropdonwnMenu = ({ menuList, category, setCategory }: Props) => {
           {menuList.map((item) => {
             return (
               <li className={styles.dropdownList} key={item}>
-                <button type='button' value={item} onClick={handleClickDropdown}>
+                <button
+                  type='button'
+                  className={cx({ [styles.disabled]: !isMoreOneWeek && item === 'week' })}
+                  value={item}
+                  onClick={handleClickDropdown}
+                  disabled={!isMoreOneWeek && item === 'week'}
+                >
                   {MENU_TITLE[item]}
                 </button>
               </li>

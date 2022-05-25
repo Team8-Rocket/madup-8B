@@ -30,6 +30,7 @@ export interface ITrendData {
   roas: number
   date: string
 }
+
 // export interface ITrendData {
 //   [imp: string]: number
 //   [click: string]: number

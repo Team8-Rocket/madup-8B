@@ -1,31 +1,46 @@
-import { useState, ChangeEvent } from 'react'
+import { useAppSelector, useAppDispatch } from 'hooks'
+import dayjs from 'dayjs'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { ko } from 'date-fns/esm/locale'
+
+import { ArrowDown } from 'assets'
+
+import { setDateRange, getDateRange } from 'states/ads'
+
 import styles from './dashboard.module.scss'
 import TotalAdStatus from './TotalAdStatus'
 
-// 날짜에 맞게 데이터를 가공
+const START_DATE = new Date('02-01-2022')
+const END_DATE = new Date('04-20-2022')
 
 const Dashboard = () => {
-  const [fromDate, setFromDate] = useState('2022-02-11')
-  const [toDate, setToDate] = useState('2022-02-16')
+  const dateRange = useAppSelector(getDateRange)
+  const dispatch = useAppDispatch()
 
-  const handleChangeFromDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setFromDate(e.currentTarget.value)
-  }
-  const handleChangetoDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setToDate(e.currentTarget.value)
-  }
+  const [startDate, endDate] = dateRange
 
   return (
     <div className={styles.content}>
-      <div>
+      <div className={styles.menu}>
         <h1 className={styles.title}>대시보드</h1>
-        <p>datetime picker</p>
+        <div className={styles.datePicker}>
+          <DatePicker
+            selectsRange
+            startDate={startDate}
+            locale={ko}
+            dateFormat='yyyy.MM.dd (eee)'
+            endDate={endDate}
+            onChange={(update) => {
+              dispatch(setDateRange(update))
+            }}
+            minDate={START_DATE}
+            maxDate={END_DATE}
+          />
+          <ArrowDown />
+        </div>
       </div>
-
-      <input type='date' value={fromDate} onChange={handleChangeFromDate} />
-      <input type='date' value={toDate} onChange={handleChangetoDate} />
-
-      <TotalAdStatus fromDate={fromDate} toDate={toDate} />
+      <TotalAdStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
     </div>
   )
 }
