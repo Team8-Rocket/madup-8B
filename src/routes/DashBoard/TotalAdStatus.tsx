@@ -221,12 +221,13 @@ const TotalAdStatus = ({ startDate, endDate }: Props) => {
           >
             <VictoryAxis
               style={{
-                axis: { stroke: 'none' },
+                axis: { stroke: '#EDEFF1' },
                 tickLabels: { fontSize: 25, padding: 5 },
+                grid: { display: 'none' },
+                ticks: { display: 'none' },
               }}
             />
-
-            {targetData.map((_: any, i: any) => {
+            {targetData.map((_: any, i: number) => {
               const key = `victory-yAXis-${i}`
               if (category2 === 'none' && i === 1) return null
               return (
@@ -237,14 +238,14 @@ const TotalAdStatus = ({ startDate, endDate }: Props) => {
                   style={{
                     axis: { stroke: 'none' },
                     // axisLabel: { fontSize: 20, padding: 32 },
-                    ticks: { padding: tickPadding[i] },
+                    // ticks: { padding: tickPadding[i] },
+                    ticks: { display: 'none' },
                     tickLabels: {
                       fill: yAxisColors[i],
                       textAnchor: anchors[i],
-                      fontSize: 20,
-                      padding: 10,
-                      marginTop: 5,
+                      fontSize: 25,
                     },
+                    grid: { stroke: '#EDEFF1', strokeDasharray: 1 },
                   }}
                   // Use normalized tickValues (0 - 1)
                   tickValues={[0.25, 0.5, 0.75, 1]}
@@ -261,25 +262,23 @@ const TotalAdStatus = ({ startDate, endDate }: Props) => {
                 />
               )
             })}
-            <VictoryGroup>
-              {targetData.map((d: any, i: any) => {
-                const key = `victory-line-${i}`
-                return (
-                  <VictoryLine
-                    labels={({ datum }) => Math.round(datum.y).toLocaleString('ko-kr')}
-                    labelComponent={
-                      <VictoryTooltip style={{ fontSize: '40px' }} flyoutStyle={{ fill: 'transparent' }} />
-                    }
-                    key={key}
-                    data={d}
-                    style={{ data: { stroke: lineColors[i], strokeWidth: 5 } }}
-                    // normalize data
-                    y={(datum) => datum.y / maxima[i]}
-                  />
-                )
-              })}
-              {/* <VictoryScatter size={7} data={targetData} /> */}
-            </VictoryGroup>
+            {/* <VictoryGroup> */}
+            {targetData.map((d: number[], i: number) => {
+              const key = `victory-line-${i}`
+              return (
+                <VictoryLine
+                  labels={({ datum }) => Math.round(datum.y).toLocaleString('ko-kr')}
+                  labelComponent={<VictoryTooltip style={{ fontSize: '40px' }} flyoutStyle={{ fill: 'transparent' }} />}
+                  key={key}
+                  data={d}
+                  style={{ data: { stroke: lineColors[i], strokeWidth: 5 } }}
+                  // normalize data
+                  y={(datum) => datum.y / maxima[i]}
+                />
+              )
+            })}
+            {/* <VictoryScatter size={7} data={targetData} /> */}
+            {/* </VictoryGroup> */}
           </VictoryChart>
         </div>
       </div>
