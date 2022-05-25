@@ -5,7 +5,7 @@ import Header from './_shared/Header'
 import DashBoard from './DashBoard'
 import AdManagement from './AdManagement'
 
-import styles from './Routes.module.scss'
+import styles from './routes.module.scss'
 
 const App = () => {
   return (
