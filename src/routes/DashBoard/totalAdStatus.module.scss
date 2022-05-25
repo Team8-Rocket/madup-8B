@@ -1,0 +1,56 @@
+@use '/src/styles/constants/colors';
+
+.content {
+  width: 1039px;
+  height: 780px;
+  // height: 100%;
+  padding: 20px 40px 40px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+}
+
+.chartContainer {
+  // width: 1200px;
+  min-width: 1000px;
+  height: 400px;
+}
+
+.selectCategoryContainer {
+  display: flex;
+  margin: 42px 0 40px;
+
+  div:nth-child(2) {
+    margin-left: 10px;
+
+    button {
+      &::after {
+        background-color: colors.$LINE2;
+      }
+    }
+  }
+
+  div:last-child {
+    margin-left: auto;
+
+    button {
+      justify-content: end;
+      padding: 0;
+      border: none;
+
+      &::after {
+        display: none;
+      }
+
+      svg {
+        margin-right: 15px;
+        margin-left: 16px;
+      }
+    }
+  }
+}

@@ -59,7 +59,23 @@ const arr = Array.from({ length: 7 }, (value, index) => index)
 
 const totalnum = (n: number) => google[n].value + facebook[n].value + naver[n].value + kakao[n].value
 
-const Table = () => {
+interface Props {
+  startDate: string
+  endDate: string
+}
+
+interface IFilteredData {
+  cost: number
+  revenue: number
+  roas: number
+  imp: number
+  click: number
+  cv: number
+  ctr: number
+  cpc: number
+}
+
+const Table = ({ filteredData }: { filteredData: IFilteredData }) => {
   return (
     <div className={styles.tableContainer}>
       <table className={styles.table}>

@@ -56,11 +56,67 @@ const googleValue = google.filter((v) => {
   return category === tickFormat[0]
 })[0]
 
-const MediaChart = () => {
+interface ICompanyData {
+  total: number
+  facebook: number
+  naver: number
+  google: number
+  kakao: number
+}
+
+interface IFilteredData {
+  cost: ICompanyData
+  revenue: ICompanyData
+  roas: ICompanyData
+  imp: ICompanyData
+  click: ICompanyData
+  cv: ICompanyData
+  ctr: ICompanyData
+  cpc: ICompanyData
+}
+
+const MediaChart = ({ filteredData }: { filteredData: IFilteredData }) => {
+  console.log((filteredData.cost.google / filteredData.cost.total) * 100)
+
+  const INIT_DATA = {
+    google: [
+      { value: (filteredData.cost.google / filteredData.cost.total) * 100, category: '광고비' },
+      { value: (filteredData.revenue.google / filteredData.cost.total) * 100, category: '매출' },
+      { value: (filteredData.imp.google / filteredData.cost.total) * 100, category: '노출 수' },
+      { value: (filteredData.click.google / filteredData.cost.total) * 100, category: '클릭 수' },
+      { value: (filteredData.cv.google / filteredData.cost.total) * 100, category: '전환 수' },
+    ],
+    facebook: [
+      { value: (filteredData.cost.facebook / filteredData.cost.total) * 100, category: '광고비' },
+      { value: (filteredData.revenue.facebook / filteredData.cost.total) * 100, category: '매출' },
+      { value: (filteredData.imp.facebook / filteredData.cost.total) * 100, category: '노출 수' },
+      { value: (filteredData.click.facebook / filteredData.cost.total) * 100, category: '클릭 수' },
+      { value: (filteredData.cv.facebook / filteredData.cost.total) * 100, category: '전환 수' },
+    ],
+    naver: [
+      { value: (filteredData.cost.naver / filteredData.cost.total) * 100, category: '광고비' },
+      { value: (filteredData.revenue.naver / filteredData.cost.total) * 100, category: '매출' },
+      { value: (filteredData.imp.naver / filteredData.cost.total) * 100, category: '노출 수' },
+      { value: (filteredData.click.naver / filteredData.cost.total) * 100, category: '클릭 수' },
+      { value: (filteredData.cv.naver / filteredData.cost.total) * 100, category: '전환 수' },
+    ],
+    kakao: [
+      { value: (filteredData.cost.kakao / filteredData.cost.total) * 100, category: '광고비' },
+      { value: (filteredData.revenue.kakao / filteredData.cost.total) * 100, category: '매출' },
+      { value: (filteredData.imp.kakao / filteredData.cost.total) * 100, category: '노출 수' },
+      { value: (filteredData.click.kakao / filteredData.cost.total) * 100, category: '클릭 수' },
+      { value: (filteredData.cv.kakao / filteredData.cost.total) * 100, category: '전환 수' },
+    ],
+  }
+  console.log(INIT_DATA.google)
+  console.log(INIT_DATA.kakao)
+  console.log(INIT_DATA.naver)
+  console.log(INIT_DATA.facebook)
+
   return (
     <VictoryChart domainPadding={40} theme={VictoryTheme.material} width={700} height={300}>
       <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
-      <VictoryAxis dependentAxis tickFormat={(x) => `${x / 2_500_000}%`} />
+      <VictoryAxis dependentAxis tickFormat={(x) => `${x * 100}%`} />
       <VictoryLegend
         x={400}
         y={280}
@@ -81,7 +137,7 @@ const MediaChart = () => {
           style={{
             data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#AC8AF8' },
           }}
-          data={google}
+          data={INIT_DATA.google}
           x='category'
           y='value'
         />
@@ -89,7 +145,7 @@ const MediaChart = () => {
           style={{
             data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#4fadf7' },
           }}
-          data={facebook}
+          data={INIT_DATA.facebook}
           x='category'
           y='value'
         />
@@ -97,7 +153,7 @@ const MediaChart = () => {
           style={{
             data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#85DA47' },
           }}
-          data={naver}
+          data={INIT_DATA.naver}
           x='category'
           y='value'
         />
@@ -106,7 +162,7 @@ const MediaChart = () => {
             data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#f8d849' },
           }}
           cornerRadius={{ top: 3 }}
-          data={kakao}
+          data={INIT_DATA.kakao}
           x='category'
           y='value'
         />

@@ -1,3 +1,30 @@
-.dashboard {
-  font-size: 16px;
+@use '/src/styles/constants/colors';
+
+.content {
+  height: 1210px;
+  padding-top: 25px;
+  margin: 0 41px 0 40px;
+  background: colors.$BACKGROUND;
+  border-top: 1px solid colors.$GREY50;
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+
+    .datePicker {
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      width: 220px;
+      // background-color: colors.$WHITE;
+      cursor: pointer;
+    }
+  }
+
+  .title {
+    font-size: 26px;
+    font-weight: 900;
+  }
 }

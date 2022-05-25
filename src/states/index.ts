@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-// import todo from './todo'
+import ads from './ads'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: { ads },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 })

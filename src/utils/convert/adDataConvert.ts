@@ -22,7 +22,7 @@ const convertBudget = (budget: number) => {
 }
 
 const commaFomatter = (number: number) => {
-  return (number % 10000).toLocaleString('ko-kr')
+  return (number / 10000).toLocaleString('ko-kr')
 }
 
 export const adDataConvert = (adDatas: IAdData[]) => {
