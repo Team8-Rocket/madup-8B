@@ -1,81 +1,74 @@
-import CHANNEL_DATA from 'assets/json/wanted_FE-media-channel-data-set.json'
-import { mediaData } from 'utils/convert/mediaData'
+import BigNumber from 'bignumber.js'
+
 import styles from './table.module.scss'
 
-const DATA = mediaData(CHANNEL_DATA)
-const getTableData = () => {
-  const data: Record<string, { value: number; category: string }[]> = {
-    google: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: 'roas' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '클릭 률' },
-      { value: 0, category: '클릭 당 비용' },
-    ],
-    facebook: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: 'roas' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '클릭 률' },
-      { value: 0, category: '클릭 당 비용' },
-    ],
-    naver: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: 'roas' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '클릭 률' },
-      { value: 0, category: '클릭 당 비용' },
-    ],
-    kakao: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: 'roas' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '클릭 률' },
-      { value: 0, category: '클릭 당 비용' },
-    ],
-  }
-
-  DATA.forEach((d) => {
-    data[d.channel].find((item) => item.category === '광고비')!.value += d.cost
-    data[d.channel].find((item) => item.category === '매출')!.value += d.roas * d.cost * 0.01
-    data[d.channel].find((item) => item.category === 'roas')!.value += d.roas * d.cost * 0.01
-    data[d.channel].find((item) => item.category === '노출 수')!.value += d.imp
-    data[d.channel].find((item) => item.category === '클릭 수')!.value += d.click
-    data[d.channel].find((item) => item.category === '클릭 률')!.value += d.ctr
-    data[d.channel].find((item) => item.category === '클릭 당 비용')!.value += d.cpc
-  })
-  return data
-}
-const { google, facebook, naver, kakao } = getTableData()
-const arr = Array.from({ length: 7 }, (value, index) => index)
-
-const totalnum = (n: number) => google[n].value + facebook[n].value + naver[n].value + kakao[n].value
-
-interface Props {
-  startDate: string
-  endDate: string
-}
-
-interface IFilteredData {
-  cost: number
-  revenue: number
-  roas: number
-  imp: number
+interface IChannelData {
+  [key: string]: string | number
+  channel: string
   click: number
-  cv: number
-  ctr: number
+  convValue: number
+  cost: number
+  cpa: number
   cpc: number
+  ctr: number
+  cvr: number
+  date: string
+  imp: number
+  roas: number
 }
 
-const Table = ({ filteredData }: { filteredData: IFilteredData }) => {
+const COLUMN_ORDER = ['cost', 'revenue', 'roas', 'imp', 'click', 'ctr', 'cpc']
+
+const transformData = (data: IChannelData[]) => {
+  const facebookData = COLUMN_ORDER.map((column) =>
+    data
+      .filter((el) => el.channel === 'facebook')
+      .reduce((acc, cur) => {
+        if (column === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+        return acc.plus(Number(cur[column]))
+      }, new BigNumber(0))
+  )
+
+  const naverData = COLUMN_ORDER.map((column) =>
+    data
+      .filter((el) => el.channel === 'naver')
+      .reduce((acc, cur) => {
+        if (column === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+        return acc.plus(Number(cur[column]))
+      }, new BigNumber(0))
+  )
+
+  const googleData = COLUMN_ORDER.map((column) =>
+    data
+      .filter((el) => el.channel === 'google')
+      .reduce((acc, cur) => {
+        if (column === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+        return acc.plus(Number(cur[column]))
+      }, new BigNumber(0))
+  )
+
+  const kakaoData = COLUMN_ORDER.map((column) =>
+    data
+      .filter((el) => el.channel === 'kakao')
+      .reduce((acc, cur) => {
+        if (column === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+        return acc.plus(Number(cur[column]))
+      }, new BigNumber(0))
+  )
+
+  const totalData = COLUMN_ORDER.map((column) =>
+    data.reduce((acc, cur) => {
+      if (column === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+      return acc.plus(Number(cur[column]))
+    }, new BigNumber(0))
+  )
+
+  return { facebookData, naverData, googleData, kakaoData, totalData }
+}
+
+const Table = ({ filteredData }: { filteredData: IChannelData[] }) => {
+  const { facebookData, naverData, googleData, kakaoData, totalData } = transformData(filteredData)
+
   return (
     <div className={styles.tableContainer}>
       <table className={styles.table}>
@@ -97,33 +90,32 @@ const Table = ({ filteredData }: { filteredData: IFilteredData }) => {
         <tbody className={styles.tableBody}>
           <tr>
             <th>페이스북</th>
-            {facebook.map((item) => {
-              return <td key={`${item.category}-${item.value}`}>{item.value}</td>
+            {facebookData.map((item) => {
+              return <td key={Math.random()}>{item.integerValue().toFormat()}</td>
             })}
           </tr>
           <tr>
             <th>네이버</th>
-            {naver.map((item) => {
-              return <td key={`${item.category}-${item.value}`}>{item.value}</td>
+            {naverData.map((item) => {
+              return <td key={Math.random()}>{item.integerValue().toFormat()}</td>
             })}
           </tr>
           <tr>
             <th>구글</th>
-            {google.map((item) => {
-              return <td key={`${item.category}-${item.value}`}>{item.value}</td>
+            {googleData.map((item) => {
+              return <td key={Math.random()}>{item.integerValue().toFormat()}</td>
             })}
           </tr>
           <tr>
             <th>카카오</th>
-            {kakao.map((item) => {
-              return <td key={`${item.category}-${item.value}`}>{item.value}</td>
+            {kakaoData.map((item) => {
+              return <td key={Math.random()}>{item.integerValue().toFormat()}</td>
             })}
           </tr>
           <tr className={styles.totalValue}>
             <th>총계</th>
-
-            {arr.map((value, index) => {
-              return <td key={`arr-${value}`}>{totalnum(index)}</td>
+            {totalData.map((item) => {
+              return <td key={Math.random()}>{item.integerValue().toFormat()}</td>
             })}
           </tr>
         </tbody>

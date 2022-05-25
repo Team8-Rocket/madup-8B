@@ -1,77 +1,68 @@
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryLegend } from 'victory'
-import { mediaData } from 'utils/convert/mediaData'
-import CHANNEL_DATA from 'assets/json/wanted_FE-media-channel-data-set.json'
+import BigNumber from 'bignumber.js'
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryStack,
+  VictoryTheme,
+  VictoryLegend,
+  VictoryTooltip,
+} from 'victory'
+import { v4 } from 'uuid'
 
-const DATA = mediaData(CHANNEL_DATA)
+const TICK_FORMAT = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
+const TICK_VALUES = ['cost', 'revenue', 'imp', 'click', 'cv']
 
-const getData = () => {
-  const data: Record<string, { value: number; category: string }[]> = {
-    google: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '전환 수' },
-    ],
-    facebook: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '전환 수' },
-    ],
-    naver: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '전환 수' },
-    ],
-    kakao: [
-      { value: 0, category: '광고비' },
-      { value: 0, category: '매출' },
-      { value: 0, category: '노출 수' },
-      { value: 0, category: '클릭 수' },
-      { value: 0, category: '전환 수' },
-    ],
-  }
-
-  DATA.forEach((d) => {
-    data[d.channel].find((item) => item.category === '광고비')!.value += d.cost
-    data[d.channel].find((item) => item.category === '매출')!.value += d.roas * d.cost * 0.01
-    data[d.channel].find((item) => item.category === '노출 수')!.value += d.imp
-    data[d.channel].find((item) => item.category === '클릭 수')!.value += d.click
-    data[d.channel].find((item) => item.category === '전환 수')!.value += d.cvr * d.click * 0.01
-  })
-
-  return data
-}
-const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
-const { google, facebook, naver, kakao } = getData()
-
-const total = Array(5).fill(0)
-
-const googleValue = google.filter((v) => {
-  const { category } = v
-  return category === tickFormat[0]
-})[0]
-
-interface IFilteredData {
-  cost: number
-  revenue: number
-  roas: number
-  imp: number
+interface IChannelData {
+  [key: string]: string | number
+  channel: string
   click: number
-  cv: number
-  ctr: number
+  convValue: number
+  cost: number
+  cpa: number
   cpc: number
+  ctr: number
+  cvr: number
+  date: string
+  imp: number
+  roas: number
 }
 
-const MediaChart = ({ filteredData }: { filteredData: IFilteredData }) => {
+const COMPANY_LIST = ['facebook', 'naver', 'google', 'kakao']
+const transformData = (filteredData: IChannelData[]) => {
+  const totals = TICK_VALUES.map((tValue) =>
+    filteredData.reduce((acc, cur) => {
+      if (tValue === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+      if (tValue === 'cv') return acc.plus(Number(cur.cvr * cur.click * 0.01))
+      return acc.plus(Number(cur[tValue]))
+    }, new BigNumber(0))
+  )
+
+  return COMPANY_LIST.map((cName) =>
+    TICK_VALUES.map((tValue, i) => ({
+      x: tValue,
+      y: filteredData
+        .filter((el) => el.channel === cName)
+        .reduce((acc, cur) => {
+          if (tValue === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
+          if (tValue === 'cv') return acc.plus(Number(cur.cvr * cur.click * 0.01))
+
+          return acc.plus(Number(cur[tValue]))
+        }, new BigNumber(0))
+        .dividedBy(totals[i])
+        .times(100)
+        .toNumber(),
+    }))
+  )
+}
+
+const MediaChart = ({ filteredData }: { filteredData: IChannelData[] }) => {
+  const dataset = transformData(filteredData)
+
   return (
-    <VictoryChart domainPadding={40} theme={VictoryTheme.material} width={700} height={300}>
-      <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
-      <VictoryAxis dependentAxis tickFormat={(x) => `${x / 2_500_000}%`} />
+    <VictoryChart domainPadding={{ x: 80 }} theme={VictoryTheme.material} width={700} height={300}>
+      <VictoryAxis tickValues={TICK_VALUES} tickFormat={TICK_FORMAT} />
+      <VictoryAxis dependentAxis tickValues={[0, 20, 40, 60, 80, 100]} />
       <VictoryLegend
         x={400}
         y={280}
@@ -88,39 +79,22 @@ const MediaChart = ({ filteredData }: { filteredData: IFilteredData }) => {
         ]}
       />
       <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FBE300']}>
-        <VictoryBar
-          style={{
-            data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#AC8AF8' },
-          }}
-          data={google}
-          x='category'
-          y='value'
-        />
-        <VictoryBar
-          style={{
-            data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#4fadf7' },
-          }}
-          data={facebook}
-          x='category'
-          y='value'
-        />
-        <VictoryBar
-          style={{
-            data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#85DA47' },
-          }}
-          data={naver}
-          x='category'
-          y='value'
-        />
-        <VictoryBar
-          style={{
-            data: { stroke: '#FFFFFF', strokeWidth: 0.5, fill: '#f8d849' },
-          }}
-          cornerRadius={{ top: 3 }}
-          data={kakao}
-          x='category'
-          y='value'
-        />
+        {dataset.map((data) => (
+          <VictoryBar
+            data={data}
+            key={v4()}
+            labels={({ datum }) => `${Math.round(datum.y)}%`}
+            labelComponent={
+              <VictoryTooltip
+                pointerOrientation='bottom'
+                flyoutWidth={50}
+                flyoutHeight={20}
+                style={{ fontSize: '14px', fill: '#FFFFFF', fontWeight: '300' }}
+                flyoutStyle={{ fill: '#3A474E' }}
+              />
+            }
+          />
+        ))}
       </VictoryStack>
     </VictoryChart>
   )

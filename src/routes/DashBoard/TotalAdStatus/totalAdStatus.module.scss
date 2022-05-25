@@ -1,12 +1,26 @@
 @use '/src/styles/constants/colors';
 
+.container {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  margin-left: 320px;
+}
+
+.totalAdStatusTitle {
+  // align-self: flex-start;
+  padding: 0 auto;
+  margin: 20px 0;
+}
+
 .content {
-  width: 1039px;
+  width: 1040px;
   height: 780px;
-  // height: 100%;
   padding: 20px 40px 40px;
+  // margin: auto;
   background-color: colors.$WHITE;
   border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 40%);
 }
 
 .cardContainer {
@@ -16,7 +30,6 @@
 }
 
 .chartContainer {
-  // width: 1200px;
   min-width: 1000px;
   height: 400px;
 }

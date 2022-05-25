@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+
 import styles from './card.module.scss'
 
 import { Plus, Minus } from 'assets/index'
@@ -13,7 +14,7 @@ const CATEGORY_UNITS: ICategoryUnitKey = {
   imp: '회',
   click: '회',
   conv: '회',
-  convValue: '원',
+  revenue: '원',
 }
 
 const convertWonUnit = (money: number): string => {
@@ -41,7 +42,7 @@ const Card = ({ cardTitle, currentValue, previousValue }: Props) => {
     imp: '노출 수',
     click: '클릭 수',
     conv: '전환 수',
-    convValue: '매출',
+    revenue: '매출',
   }[cardTitle]
 
   const convertedValue = {
@@ -50,7 +51,7 @@ const Card = ({ cardTitle, currentValue, previousValue }: Props) => {
     imp: convertTimesUnit(currentValue.toNumber()),
     click: convertTimesUnit(currentValue.toNumber()),
     conv: convertTimesUnit(currentValue.toNumber()),
-    convValue: convertWonUnit(currentValue.toNumber()),
+    revenue: convertWonUnit(currentValue.toNumber()),
   }[cardTitle]
 
   const diffValue = {
@@ -59,7 +60,7 @@ const Card = ({ cardTitle, currentValue, previousValue }: Props) => {
     imp: convertTimesUnit(currentValue.minus(previousValue).abs().toNumber()),
     click: convertTimesUnit(currentValue.minus(previousValue).abs().toNumber()),
     conv: convertTimesUnit(currentValue.minus(previousValue).abs().toNumber()),
-    convValue: convertWonUnit(currentValue.minus(previousValue).abs().toNumber()),
+    revenue: convertWonUnit(currentValue.minus(previousValue).abs().toNumber()),
   }[cardTitle]
 
   return (

@@ -1,7 +1,7 @@
 import { MouseEvent, useEffect, useRef, useState } from 'react'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { useAppSelector, useAppDispatch } from 'hooks'
-import { getCategory1, getCategory2, setCategory1, getDateRange } from 'states/ads'
+import { getDateRange } from 'states/ads'
 import dayjs from 'dayjs'
 import cx from 'classnames'
 
@@ -18,7 +18,7 @@ const MENU_TITLE: MemuTitle = {
   imp: '노출수',
   click: '클릭수',
   conv: '전환수',
-  convValue: '매출',
+  revenue: '매출',
   none: '없음',
   day: '일간',
   week: '주간',
@@ -31,14 +31,13 @@ interface Props {
 }
 
 const DropdonwnMenu = ({ menuList, category, setCategory }: Props) => {
-  const date = useAppSelector(getDateRange)
-  const [startDate, endDate] = date
-  const isMoreOneWeek = dayjs(endDate).diff(startDate, 'day') >= 7
-
+  const [startDate, endDate] = useAppSelector(getDateRange)
   const dispatch = useAppDispatch()
 
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  const isLongerThanOneWeek = dayjs(endDate).diff(startDate, 'day') >= 7
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prev) => !prev)
@@ -76,10 +75,10 @@ const DropdonwnMenu = ({ menuList, category, setCategory }: Props) => {
               <li className={styles.dropdownList} key={item}>
                 <button
                   type='button'
-                  className={cx({ [styles.disabled]: !isMoreOneWeek && item === 'week' })}
+                  className={cx({ [styles.disabled]: !isLongerThanOneWeek && item === 'week' })}
                   value={item}
                   onClick={handleClickDropdown}
-                  disabled={!isMoreOneWeek && item === 'week'}
+                  disabled={!isLongerThanOneWeek && item === 'week'}
                 >
                   {MENU_TITLE[item]}
                 </button>
