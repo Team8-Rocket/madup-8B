@@ -1,4 +1,8 @@
-export { ReactComponent as LogoImage } from './logo.svg'
-export { ReactComponent as CheckIcon } from './check.svg'
-
-export { ReactComponent as SearchIcon } from './searchBar/magnifying-glass-solid.svg'
+export { ReactComponent as Logo } from './svgs/logo.svg'
+export { ReactComponent as Dashboard } from './svgs/dashboard.svg'
+export { ReactComponent as Ads } from './svgs/ads.svg'
+export { ReactComponent as Guide } from './svgs/guide.svg'
+export { ReactComponent as ArrowDown } from './svgs/dropdown.svg'
+export { ReactComponent as Notify } from './svgs/notify.svg'
+export { ReactComponent as Settings } from './svgs/settings.svg'
+export { ReactComponent as Profile } from './svgs/profile.svg'

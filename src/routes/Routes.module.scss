@@ -1,7 +1,16 @@
 @use '/src/styles/constants/colors';
 
 .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+
+  main {
+    width: calc(100vw - 320px);
+    height: 1756px;
+    margin-left: 320px;
+    background-color: colors.$BACKGROUND;
+  }
 }

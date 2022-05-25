@@ -12,11 +12,13 @@ const App = () => {
     <div className={styles.app}>
       <LNB />
       <Header />
-      <Routes>
-        <Route path='/' element={<DashBoard />} />
-        <Route path='ad' element={<AdManagement />} />
-        <Route path='*' element={<div>404</div>} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path='/' element={<DashBoard />} />
+          <Route path='ad' element={<AdManagement />} />
+          <Route path='*' element={<div>404</div>} />
+        </Routes>
+      </main>
     </div>
   )
 }
