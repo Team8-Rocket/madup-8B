@@ -23,3 +23,18 @@ export interface IConvertedAdData {
   convValue: string
   roas: number
 }
+
+export interface IMediaData {
+  channel: string
+  date: string
+  imp: number
+  click: number
+  cost: number
+  convValue: number
+  ctr: number
+  cvr: number
+  cpc: number
+  cpa: number
+  roas: number
+  value?: number
+}

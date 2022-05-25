@@ -9,7 +9,9 @@ import { ArrowDown } from 'assets'
 import { setDateRange, getDateRange } from 'states/ads'
 
 import styles from './dashboard.module.scss'
+
 import TotalAdStatus from './TotalAdStatus'
+import MediaStatus from './MediaStatus'
 
 const START_DATE = new Date('02-01-2022')
 const END_DATE = new Date('04-20-2022')
@@ -41,6 +43,7 @@ const Dashboard = () => {
         </div>
       </div>
       <TotalAdStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
+      <MediaStatus />
     </div>
   )
 }
