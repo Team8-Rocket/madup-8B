@@ -46,7 +46,6 @@ const transformData = (filteredData: IChannelData[]) => {
         .reduce((acc, cur) => {
           if (tValue === 'revenue') return acc.plus(Number(cur.roas * cur.cost * 0.01))
           if (tValue === 'cv') return acc.plus(Number(cur.cvr * cur.click * 0.01))
-
           return acc.plus(Number(cur[tValue]))
         }, new BigNumber(0))
         .dividedBy(totals[i])
