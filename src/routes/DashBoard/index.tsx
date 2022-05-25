@@ -43,7 +43,7 @@ const Dashboard = () => {
         </div>
       </div>
       <TotalAdStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
-      <MediaStatus />
+      <MediaStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
     </div>
   )
 }

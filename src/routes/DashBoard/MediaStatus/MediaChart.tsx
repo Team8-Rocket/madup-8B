@@ -56,7 +56,18 @@ const googleValue = google.filter((v) => {
   return category === tickFormat[0]
 })[0]
 
-const MediaChart = () => {
+interface IFilteredData {
+  cost: number
+  revenue: number
+  roas: number
+  imp: number
+  click: number
+  cv: number
+  ctr: number
+  cpc: number
+}
+
+const MediaChart = ({ filteredData }: { filteredData: IFilteredData }) => {
   return (
     <VictoryChart domainPadding={40} theme={VictoryTheme.material} width={700} height={300}>
       <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
