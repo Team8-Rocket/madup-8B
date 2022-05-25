@@ -41,33 +41,27 @@ const LNB = () => {
       <hr />
       <div className={styles.serviceContainer}>
         <p>서비스</p>
-        {/* <div className={styles.dropdown}> */}
         <div ref={dropdownRef}>
-          <button type='button' className={styles.dropdown} onClick={handleClickDropdown}>
+          <button
+            type='button'
+            className={cx(styles.dropdown, { [styles.clicked]: !isOpen })}
+            onClick={handleClickDropdown}
+          >
             {selectedWord}
             <ArrowDown />
           </button>
-          {isOpen && (
-            <ul className={styles.dropdownMenu}>
-              {DROPDOWN_ITEM.map((item) => {
-                return (
-                  <li className={styles.dropdownList} key={item}>
-                    <button type='button' value={item} onClick={handleClickDropdownItem}>
-                      {item}
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
+          <ul className={cx(styles.dropdownMenu, { [styles.clicked]: isOpen })}>
+            {DROPDOWN_ITEM.map((item) => {
+              return (
+                <li className={styles.dropdownList} key={item}>
+                  <button type='button' value={item} onClick={handleClickDropdownItem}>
+                    {item}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
         </div>
-
-        {/* <select className={styles.dropdown}>
-          <option>매드업</option>
-          <option>서비스 추가하기</option>
-        </select> */}
-        {/* <ArrowDown /> */}
-        {/* </div> */}
       </div>
       <nav>
         <p>광고 센터</p>

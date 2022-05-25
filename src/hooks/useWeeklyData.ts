@@ -29,7 +29,8 @@ export const useWeeklyData = (startDate: string, endDate: string, category1: str
             .format('MM월 DD일')}`,
           y: 0,
         })
-      acc[0][i].y += cur[category1]
+      if (category1 === 'revenue') acc[0][i].y += cur.roas * cur.cost * 0.01
+      else acc[0][i].y += cur[category1]
 
       if (category2 !== 'none') {
         if (!acc[1][i])
@@ -39,7 +40,8 @@ export const useWeeklyData = (startDate: string, endDate: string, category1: str
               .format('MM월 DD일')}`,
             y: 0,
           })
-        acc[1][i].y += cur[category2]
+        if (category2 === 'revenue') acc[1][i].y += cur.roas * cur.cost * 0.01
+        else acc[1][i].y += cur[category2]
       }
       return acc
     },
@@ -48,21 +50,3 @@ export const useWeeklyData = (startDate: string, endDate: string, category1: str
 
   return weeklyData
 }
-
-// useUpdateEffect(() => {
-//   if (dayOrWeek === 'week') {
-//     const weeklyData1 = targetData[0].reduce((acc: any, cur: any, i: number) => {
-//       if (i % 7 === 0)
-//         acc.push({ x: `${dayjs(cur.x).format('MM-DD')}~ ${dayjs(cur.x).add(6, 'day').format('MM-DD')}`, y: 0 })
-//       acc[Math.floor(i / 7)].y += cur.y
-//       return acc
-//     }, [])
-//     const weeklyDate2 = targetData[1].reduce((acc: any, cur: any, i: number) => {
-//       if (i % 7 === 0)
-//         acc.push({ x: `${dayjs(cur.x).format('MM-DD')}~ ${dayjs(cur.x).add(6, 'day').format('MM-DD')}`, y: 0 })
-//       acc[Math.floor(i / 7)].y += cur.y
-//       return acc
-//     }, [])
-//     setTargetData([weeklyData1, weeklyDate2])
-//   }
-// }, [startDate, endDate, category1, category2, dayOrWeek])

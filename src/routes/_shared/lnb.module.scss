@@ -1,9 +1,23 @@
 @use '/src/styles/constants/colors';
 
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+
+  80% {
+    transform: scaleY(1.1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
 .container {
   position: absolute;
   width: 320px;
-  height: 1290px;
+  height: 1900px;
   padding: 24px;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 4%);
 
@@ -43,6 +57,14 @@
       font-weight: 700 !important;
       border: 1px solid colors.$GREY100;
       border-radius: 10px;
+
+      svg {
+        transition: transform 300ms ease-in-out;
+      }
+    }
+
+    .dropdown.clicked > svg {
+      transform: rotate(180deg);
     }
   }
 
@@ -50,12 +72,15 @@
     position: sticky;
     left: 35px;
     z-index: 1;
+    display: none;
     max-width: 240px;
     margin-top: 3px;
     background-color: colors.$WHITE;
     border: 1px solid colors.$GREY100;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
+    transform-origin: top center;
+    animation: growDown 300ms ease-in-out forwards;
 
     .dropdownList {
       width: 240px;
@@ -68,6 +93,10 @@
         font-weight: 700;
       }
     }
+  }
+
+  .dropdownMenu.clicked {
+    display: block;
   }
 
   nav {

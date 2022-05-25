@@ -3,7 +3,7 @@
 .content {
   height: 1210px;
   padding-top: 25px;
-  margin: 0 41px 0 40px;
+  margin: 0 41px 0 360px;
   background: colors.$BACKGROUND;
   border-top: 1px solid colors.$GREY50;
 
@@ -59,7 +59,6 @@
       .addAdButton {
         width: 108px;
         height: 40px;
-        // margin: 40px 40px 0 0;
         color: colors.$WHITE;
         background: colors.$PRIMARY;
         border-radius: 10px;
@@ -70,10 +69,6 @@
   .gridContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    // height: 840px;
     margin: 0 auto;
-    // overflow-y: scroll;
-    // row-gap: 32px;
-    // column-gap: 20px;
   }
 }

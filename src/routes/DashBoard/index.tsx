@@ -1,14 +1,10 @@
 import { useAppSelector, useAppDispatch } from 'hooks'
 import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
+
 import 'react-datepicker/dist/react-datepicker.css'
-import { ko } from 'date-fns/esm/locale'
-
-import { ArrowDown } from 'assets'
-
-import { setDateRange, getDateRange } from 'states/ads'
-
 import styles from './dashboard.module.scss'
+import { setDateRange, getDateRange } from 'states/ads'
 
 import TotalAdStatus from './TotalAdStatus'
 import MediaStatus from './MediaStatus'
@@ -22,6 +18,10 @@ const Dashboard = () => {
 
   const [startDate, endDate] = dateRange
 
+  const handleDateChange = (update: [Date | null, Date | null]) => {
+    dispatch(setDateRange(update))
+  }
+
   return (
     <div className={styles.content}>
       <div className={styles.menu}>
@@ -30,20 +30,21 @@ const Dashboard = () => {
           <DatePicker
             selectsRange
             startDate={startDate}
-            locale={ko}
-            dateFormat='yyyy.MM.dd (eee)'
+            dateFormat='yyyy년 MM월 dd일'
             endDate={endDate}
-            onChange={(update) => {
-              dispatch(setDateRange(update))
-            }}
+            onChange={handleDateChange}
             minDate={START_DATE}
             maxDate={END_DATE}
           />
-          <ArrowDown />
         </div>
       </div>
-      <TotalAdStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
-      <MediaStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
+      <div className={styles.chartContainer}>
+        <TotalAdStatus
+          startDate={dayjs(startDate).format('YYYY/MM/DD')}
+          endDate={dayjs(endDate).format('YYYY/MM/DD')}
+        />
+        <MediaStatus startDate={dayjs(startDate).format('YYYY/MM/DD')} endDate={dayjs(endDate).format('YYYY/MM/DD')} />
+      </div>
     </div>
   )
 }
