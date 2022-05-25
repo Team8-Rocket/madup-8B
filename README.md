@@ -1,46 +1,196 @@
-# Getting Started with Create React App
+# Madup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📜 프로젝트 개요
+JSON -> 그래프 구현
+## 🔗 프로젝트 배포
 
-## Available Scripts
+### ⭐ Main API 🔗 
 
-In the project directory, you can run:
+## ⚙ 기술 스택
+  <img src="https://img.shields.io/badge/TypeScript-v4.4.2-blue"/>
+  <img src="https://img.shields.io/badge/React-v18.1.0-blue"/>
+  <img src="https://img.shields.io/badge/Redux/toolkit-v1.8.1-blue"/>
+  <img src="https://img.shields.io/badge/React Router Dom-v6.3.0-blue"/>
 
-### `yarn start`
+```
+그 외 추가 라이브러리
+  axios, classnames, react-error-boundary, react-query, react-use, store, uuid
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🎄 프로젝트 트리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+src
+ ┣ assets       // svg 파일
+ ┣ components   // 공통으로 사용하는 컴포넌트
+ ┣ hooks        // Custom Hooks
+ ┣ routes       // 페이지
+ ┣ services     // API 호출 관련
+ ┣ store        // 전역 상태
+ ┣ styles       // 전역 style
+ ┣ types        // 필요한 type 정의
+```
+## 📍 Getting Started / 어떻게 시작하나요?
+1. Repository 클론
+```sh
+$ git clone git@github.com:Team8-Rocket/madup-8B.git
+```
 
-### `yarn test`
+2. Dependecies 설치
+```sh
+$ yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Run 실행
+```sh
+$ yarn start
+```
+## 🖼 실행 이미지
+<p align="center">
+<img
+  src="https://user-images.githubusercontent.com/87363088/169679052-bc7fd74e-a787-4a71-ad37-466233a956f5.gif"
+  width="300" alt="반응형 UI 디자인"
+/></p>
 
-### `yarn build`
+1. 검색창에 찾고자 하는 질환명을 입력합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. 검색한 질환명에 따라 추천 검색어가 검색창 하단에 보이게 됩니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 추천 검색어는 키보드와 마우스로 이동이 가능하며 스크롤 최하단으로 이동 시 자동으로 다음 추천 검색어들이 노출됩니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+(검색한 질환명의 띄어쓰기 상관없이 검색되도록 구현)
 
-### `yarn eject`
+---
+## 🔧구현 방법
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<목차>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1) [질환명 검색시 추천](#1-질환명-검색시-추천)  
+2) [검색어 없을 시 '검색어 없음'](#2-검색어-없을-시-검색어-없음)   
+3) [API 호출 최적화](#3-api-호출-최적화)
+4) [키보드로 추천 검색어 이동](#4-키보드로-추천-검색어-이동) 
+5) [도전 과제: 배포](#5-도전-과제-배포) 
+6) [도전 과제: 퍼지 문자열 검색](#6-도전-과제-퍼지-문자열-검색) 
+7) [도전 과제: 사용자가 입력한 질환명 볼드처리](#7-도전-과제-사용자가-입력한-질환명-bold-처리) 
+8) [추가 작업: Pagenation](#8-추가-작업-pagenation)  
+9) [추가 작업: 다크모드](#9-추가) 
+10) [추가 작업: 검색결과 클릭시 실제 검색 연결](#10-추가-작업-검색결과-클릭시-실제-검색-연결)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
+### 1) 질환명 검색시 추천
+- `useInfiniteQuery`로 api 호출후에 검색 결과를 반환하면 렌더링을하고, 캐시에도 추가
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 2) 검색어 없을 시 '검색어 없음'
+- api에서 해당 검색어가 없을 시 falsy값을 반환하여 검색어 없음 노출
 
-## Learn More
+### 3) API 호출 최적화
+- react-query를 이용하여 옵션에 staleTime를 지정하여 10 분 동안 데이터를 저장
+- refetchOnWindowFocus와 retryOnMount를 설정하여 창이 focus될때마다 랜더링을 하지 않게 설정하였다.
+- react suspense와 errorboundary를 이용하여 데이터에 상태에 따라 페이지를 처리
+- api 서버 요청 에러 상황(데이터가 없거나, 서버 오류 등)은 react-query에서 error 반환시 상위 에러 바운더리에서 에러 캐치
+- 로컬 캐시에 저장된 내용은 api를 다시 호출하지 않고, 바로 캐시를 불러옴
+### 4) 키보드로 추천 검색어 이동
+<p align="center">
+<img
+  src="https://user-images.githubusercontent.com/87363088/169676251-5116b718-abef-4df8-9745-0233145c2fa8.gif"
+  width="300" alt="키보드다운이벤트"
+/>
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 컴포넌트 분리로 인해 `Redux Toolkit`을 사용하여 전역관리
+ 
+`const index = useAppSelector(getItemIndex)`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- KeyboardEvent로 입력받은 키로 컨트롤.
+
+```
+// map으로 접근한 li 요소의 index값 증가
+if (e.key === 'ArrowDown') {
+  dispatch(incrementItemIndex())
+  ...
+}
+
+// map으로 접근한 li 요소의 index값 감소
+if (e.key === 'ArrowUp'){
+  dispatch(decrementItemIndex())
+  ...
+}
+
+// pagination으로 인한 hover 스크롤 이동 구현
+keyIndexRef.current?.scrollTo({ ... })
+
+prePageNumber = page.currentPage - 1
+cx({ [styles.isFocus]: index === i + prePageNumber * 10 })
+
+```
+- Mac에서 한글로 입력시 2번씩 호출되는 문제 해결
+`e.nativeEvent.isComposing`
+- 맨 처음 시작했을 때 Input에 focus
+`inputRef.current?.focus()`
+
+
+### 5) 도전 과제: 배포
+- netlify를 활용하여 배포
+- secret key를 환경변수로 분리함
+- CORS 문제로 다음 설정을 추가함.
+- `/package.json`에 `"proxy": "http://apis.data.go.kr"` 추가
+- `/netlify.toml`에 `[[redirects]]` 추가
+- axios 호출 부분에 하단 내용 추가
+```
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
+```
+
+### 6) 도전 과제: 퍼지 문자열 검색
+- JSON 데이터로 초성검색 구현 
+
+### 7) 도전 과제: 사용자가 입력한 질환명 Bold 처리
+- 사용자가 입력한 Query로 검색된 문자열을 `split()`한 후, `reduce()`를 이용해서 각 문자열  사이에 `<strong>{query}</strong>`를 push해서 합침
+- 처음에 `replace()`와 정규표현식을 이용해서 한번에 바꿨지만, 해당 리턴값이 문자열이여서 추가적인 작업이 필요해서 패스
+- `split()`한 문자열에 `join(<strong>{query}</strong>)`로 합치려고 시도해봤지만, 해당 결과도 `join()`의 `seperator`로 문자열만 들어갈수 있어서 해당 방법도 패스
+- 어쩔수 `reduce()`사용
+
+### 8) 추가 작업: Pagenation
+<p align="center">
+<img
+  src="https://user-images.githubusercontent.com/87363088/169679743-4bd24d84-08d4-4b2a-8a2f-6a2d6e02b21c.gif"
+  width="300" alt="페이지네이션"
+/></p>
+
+- `useInfinityQuery`를 이용해서 Pagenation 구현
+- 더 불러오기를 클릭하면 `fetchNextPage` 함수가 실행되어 다음 페이지를 가져옴
+- `InterSectionObserver` API로 무한 스크롤을 구현했으나, 스크롤에 따라 API 호출이 발생하는 문제로 인해 버튼 이벤트로 `fetchNextPage` 함수가 동작되도록 해서 API 호출을 제한하였음
+
+
+### 9) 추가 
+<p align="center">
+<img
+  src="https://user-images.githubusercontent.com/87363088/169679130-7ed16ff8-57f7-40a9-b36a-80f17f2b9f3c.gif"
+  width="300" alt="테마 다크모드"
+/></p>
+
+- redu에 initial값을 `{darkMode:false}`로 지정하고, action을 추가하여  
+button click시 darkmode 값을 변경, toolkit과 loc에 저장e 데이컴포넌트가 마운트 될 때 localstorage에서 값을 가져온 후 setAttribute을 이용하여<br/>documentElement에 mode값을 저장
+- 저장된 속성을 가지고 css에서 색상을 지정한 후 css적용
+
+### 10) 추가 작업: 검색결과 클릭시 실제 검색 연결
+<p align="center">
+<img
+  src="https://user-images.githubusercontent.com/87363088/169676431-97d425ce-cde1-41f4-8171-ec48ff0bff14.gif"
+  width="300" alt="검색결과 클릭시 실제 검색 연결"
+/></p>
+
+- a 태그로 li 요소 클릭시, 실제 검색내용을 받아 이동할 수 있도록 구현.
+```
+const SEARCH_URL = 'https://clinicaltrialskorea.com/studies?condition='
+<a href={SEARCH_URL + item.sickNm}>
+```
+## 🔥 어려웠던 점
+- 
+
+## 💎 현재 이슈
+- 
+
+## Built with
+|![bu-geon](https://avatars.githubusercontent.com/u/87363088?v=4)|![kyhyun](https://avatars.githubusercontent.com/u/77887712?v=4)|![Seung-wan](https://avatars.githubusercontent.com/u/51105841?v=4)|![hsw824](https://avatars.githubusercontent.com/u/79175916?v=4)|
+|:---:|:---:|:---:|:---:|
+|[**김부건**](https://github.com/bu-geon)|[**김영현**](https://github.com/kyhyun)|[**유승완**](https://github.com/kyhyun)|[**홍성우**](https://github.com/bisari31)|
