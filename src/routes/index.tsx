@@ -6,16 +6,17 @@ import DashBoard from './DashBoard'
 import AdManagement from './AdManagement'
 
 import styles from './routes.module.scss'
+import Wrapper from './Wrapper'
 
 const App = () => {
   return (
     <div className={styles.app}>
-      <LNB />
-      <Header />
       <main>
         <Routes>
-          <Route path='/' element={<DashBoard />} />
-          <Route path='ad' element={<AdManagement />} />
+          <Route element={<Wrapper />}>
+            <Route path='/' element={<DashBoard />} />
+            <Route path='ad' element={<AdManagement />} />
+          </Route>
           <Route path='*' element={<div>404</div>} />
         </Routes>
       </main>
