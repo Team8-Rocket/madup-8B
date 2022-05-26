@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from 'hooks'
 import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 
-import 'react-datepicker/dist/react-datepicker.css'
+import './react-datepicker.css'
 import styles from './dashboard.module.scss'
 import { setDateRange, getDateRange } from 'states/ads'
 

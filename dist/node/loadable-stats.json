@@ -1,0 +1,536 @@
+{
+  "name": "node",
+  "hash": "3aa3dbf005e4da9c15e5",
+  "publicPath": "/web/",
+  "outputPath": "/Users/yu/workspace/wanted/final_ssr/dist/node",
+  "assetsByChunkName": {
+    "main": [
+      "main.css",
+      "main.js"
+    ],
+    "Wrapper": [
+      "Wrapper.css",
+      "Wrapper.js"
+    ],
+    "DashBoard": [
+      "DashBoard.css",
+      "DashBoard.js"
+    ],
+    "AdManagement": [
+      "AdManagement.css",
+      "AdManagement.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "DashBoard.js",
+      "size": 148431,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false
+      },
+      "chunkNames": [
+        "DashBoard"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "DashBoard"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "src_assets_index_ts.js",
+      "size": 99699,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "src_assets_index_ts"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "a13599b55cbe276564b4cf689dcaae30.svg",
+      "size": 73919,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/logo.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "DashBoard.css",
+      "size": 28312,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [
+        "DashBoard"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "DashBoard"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "Wrapper.js",
+      "size": 22093,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false
+      },
+      "chunkNames": [
+        "Wrapper"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "Wrapper"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "main.js",
+      "size": 21672,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "main"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "AdManagement.js",
+      "size": 19772,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false
+      },
+      "chunkNames": [
+        "AdManagement"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "AdManagement"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "0b1f2aaa254073083230caee0594d8b7.svg",
+      "size": 9116,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/settings.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "Wrapper.css",
+      "size": 5149,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [
+        "Wrapper"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "Wrapper"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "AdManagement.css",
+      "size": 2892,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [
+        "AdManagement"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "AdManagement"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "45ce4001d28a48c44ddaa9cd509c77b3.svg",
+      "size": 2096,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/dashboard.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "9976e057d298b8b37007e64e52e2b70a.svg",
+      "size": 1812,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/notify.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "96d037128df1945362ef93fbadc895e7.svg",
+      "size": 1775,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/guide.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "1ab785d8bec7ab38333dea8bfc34ffb3.svg",
+      "size": 1274,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/ads.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "d9f736c2560077ec8d4e405fc01be637.svg",
+      "size": 913,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/profile.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "c6d0fa2ef8948d7f45b6306c4c5bf2ed.svg",
+      "size": 214,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/dropdown.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "524f073742a91d1cb5a31dcfaf7edaa6.svg",
+      "size": 167,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/minus.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    },
+    {
+      "type": "asset",
+      "name": "main.css",
+      "size": 159,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        "main"
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "39682132c55f3ae3f7997f65b52ca8ec.svg",
+      "size": 147,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "sourceFilename": "src/assets/svgs/plus.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": [
+        "src_assets_index_ts"
+      ]
+    }
+  ],
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        {
+          "name": "main.css"
+        },
+        {
+          "name": "main.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {}
+    },
+    "Wrapper": {
+      "name": "Wrapper",
+      "chunks": [
+        "src_assets_index_ts",
+        "Wrapper"
+      ],
+      "assets": [
+        {
+          "name": "src_assets_index_ts.js"
+        },
+        {
+          "name": "Wrapper.css"
+        },
+        {
+          "name": "Wrapper.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 10,
+      "auxiliaryAssetsSize": null,
+      "children": {},
+      "childAssets": {}
+    },
+    "DashBoard": {
+      "name": "DashBoard",
+      "chunks": [
+        "src_assets_index_ts",
+        "DashBoard"
+      ],
+      "assets": [
+        {
+          "name": "src_assets_index_ts.js"
+        },
+        {
+          "name": "DashBoard.css"
+        },
+        {
+          "name": "DashBoard.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 10,
+      "auxiliaryAssetsSize": null,
+      "children": {},
+      "childAssets": {}
+    },
+    "AdManagement": {
+      "name": "AdManagement",
+      "chunks": [
+        "src_assets_index_ts",
+        "AdManagement"
+      ],
+      "assets": [
+        {
+          "name": "src_assets_index_ts.js"
+        },
+        {
+          "name": "AdManagement.css"
+        },
+        {
+          "name": "AdManagement.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 10,
+      "auxiliaryAssetsSize": null,
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "generator": "loadable-components",
+  "chunks": [
+    {
+      "id": "main",
+      "files": [
+        "main.css",
+        "main.js"
+      ]
+    },
+    {
+      "id": "Wrapper",
+      "files": [
+        "Wrapper.css",
+        "Wrapper.js"
+      ]
+    },
+    {
+      "id": "DashBoard",
+      "files": [
+        "DashBoard.css",
+        "DashBoard.js"
+      ]
+    },
+    {
+      "id": "AdManagement",
+      "files": [
+        "AdManagement.css",
+        "AdManagement.js"
+      ]
+    },
+    {
+      "id": "src_assets_index_ts",
+      "files": [
+        "src_assets_index_ts.js"
+      ]
+    }
+  ]
+}
