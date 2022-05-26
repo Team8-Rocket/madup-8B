@@ -84,6 +84,19 @@ $ yarn start
 </p>
 
 
+### 4) Dockerize
+- 현재 프로젝트 및 개발환경을 도커 이미지로 생성하는 작업
+- 도커 이미지를 만들기 위한 도커파일 생성(Dockerfile)
+- .dockerignore파일을 이용하여 build에서 제외 될 파일 및 폴더 지정
+- Docker Compose를 이용하여 이미지 생성 및 컨테이너 실행(docker-compose.yaml)
+- $ docker-compose up -d --build
+
+### 5) SSR
+- main_ssr 브랜치에 구현했습니다.
+- node/, web/, Rendering Server가 필요합니다.
+- @loadable-component, Webpack&Babel, Express Server 
+- [출처](https://han.gl/VLAce)
+
 ## 🔥 어려웠던 점 및 아쉬운 점
 - Hook 의존성 관리의 어려움
 - 데이터 구조 설계 각 차트 및 테이블을 그릴때 데이터를 뿌리기 쉽게 좀 더 생각해봐야함
