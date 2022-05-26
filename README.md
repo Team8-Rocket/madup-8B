@@ -65,7 +65,7 @@ $ yarn start
 - 카테고리별로 설정한 기간의 총 합을 보여줌
 - 2가지의 지표를 선택하여 라인차트로 비교 가능
 - 주간, 일간별로 그래프 제공
-- 그래프 위으 정확한 값을 툴팁으로 제공
+- 그래프 위에 정확한 값을 툴팁으로 제공
 <p align="center">
 <img width="800" alt="매체 현황" src="https://user-images.githubusercontent.com/87363088/170390494-3ef2e774-07b1-4192-ac4a-5a8512c99648.gif">
 </p>
