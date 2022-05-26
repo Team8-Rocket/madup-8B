@@ -87,7 +87,7 @@ $ yarn start
 ### 4) Dockerize
 - 현재 프로젝트 및 개발환경을 도커 이미지로 생성하는 작업
 - 도커 이미지를 만들기 위한 도커파일 생성(Dockerfile)
-- .dockerignore파일을 이용하여 build에서 제외 될 파일 및 폴더 지정
+- .dockerignore 파일을 이용하여 build에서 제외 될 파일 및 폴더 지정
 - Docker Compose를 이용하여 이미지 생성 및 컨테이너 실행(docker-compose.yaml)
 - $ docker-compose up -d --build
 
